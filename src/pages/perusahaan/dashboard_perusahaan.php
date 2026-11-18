@@ -4788,8 +4788,8 @@
               <span class="metric-label">Stok Produk</span>
               <span class="metric-active-dot"></span>
             </div>
-            <div class="metric-value">18.400</div>
-            <div class="metric-subtext">butir tersedia</div>
+            <div class="metric-value" id="metricStok">—</div>
+            <div class="metric-subtext">kg tersedia</div>
           </article>
 
           <!-- Card 2: Pesanan Baru (Figma S-2) -->
@@ -4798,7 +4798,7 @@
               <span class="metric-label">Pesanan Baru</span>
               <span class="metric-active-dot"></span>
             </div>
-            <div class="metric-value">60</div>
+            <div class="metric-value" id="metricPesananBaru">—</div>
             <div class="metric-subtext">pesanan minggu ini</div>
           </article>
 
@@ -4808,7 +4808,7 @@
               <span class="metric-label">Pesanan Diproses</span>
               <span class="metric-active-dot"></span>
             </div>
-            <div class="metric-value">12</div>
+            <div class="metric-value" id="metricDiproses">—</div>
             <div class="metric-subtext">sedang diproses</div>
           </article>
 
@@ -4818,7 +4818,7 @@
               <span class="metric-label">Pendapatan Minggu Ini</span>
               <span class="metric-active-dot"></span>
             </div>
-            <div class="metric-value">Rp 36.000.000</div>
+            <div class="metric-value" id="metricPendapatan">—</div>
             <div class="metric-subtext">7 hari terakhir</div>
           </article>
         </section>
@@ -5906,81 +5906,47 @@
         type: 'single-chart',
         title: 'Stok produk',
         subtitle: 'Total stok tersedia',
-        total: '18.400 butir',
-        maxVal: 12000,
-        yTicks: [12000, 8000, 4000, 0],
+        total: '—',
+        maxVal: 1,
+        yTicks: [1, 0],
         formatY: (val) => val === 0 ? '0' : val.toLocaleString('id-ID'),
-        bars: [
-          { label: 'Telur Omega', value: 1400, displayVal: '1.400' },
-          { label: 'Telur A', value: 10000, displayVal: '10.000' },
-          { label: 'Telur B', value: 3000, displayVal: '3.000' },
-          { label: 'Telur C', value: 4000, displayVal: '4.000' }
-        ]
+        bars: []
       },
       'pesanan-baru': {
         type: 'single-chart',
         title: 'Pesanan baru per hari',
         subtitle: 'Jumlah pesanan',
-        total: '60 pesanan',
-        maxVal: 15,
-        yTicks: [15, 10, 5, 0],
+        total: '—',
+        maxVal: 1,
+        yTicks: [1, 0],
         formatY: (val) => val.toString(),
-        bars: [
-          { label: 'Senin', value: 8, displayVal: '8' },
-          { label: 'Selasa', value: 10, displayVal: '10' },
-          { label: 'Rabu', value: 12, displayVal: '12' },
-          { label: 'Kamis', value: 9, displayVal: '9' },
-          { label: 'Jumat', value: 11, displayVal: '11' },
-          { label: 'Sabtu', value: 6, displayVal: '6' },
-          { label: 'Minggu', value: 4, displayVal: '4' }
-        ]
+        bars: []
       },
       'pesanan-proses': {
         type: 'table',
         title: 'Pesanan Terbaru',
         buttonText: 'Lihat Semua',
-        orders: [
-          { id: '#ORD-2027-001', buyer: 'UD Lancar Jaya', product: 'Telur Ayam', total: 'Rp 707.000', date: '07 Jun 2027', status: 'Diproses', statusClass: 'diproses' },
-          { id: '#ORD-2027-002', buyer: 'Nina W', product: 'Telur Ayam', total: 'Rp 750.000', date: '07 Jun 2027', status: 'Baru', statusClass: 'baru' },
-          { id: '#ORD-2027-003', buyer: 'PT Boga Jaya', product: 'Telur Omega', total: 'Rp 1.430.000', date: '06 Jun 2027', status: 'Selesai', statusClass: 'selesai' },
-          { id: '#ORD-2027-004', buyer: 'CV Sembako', product: 'Telur Ayam B', total: 'Rp 980.000', date: '05 Jun 2027', status: 'Diproses', statusClass: 'diproses' }
-        ]
+        orders: []
       },
       'pendapatan': {
         type: 'dual-charts',
         chartLeft: {
-          title: 'Volume telur (butir)',
+          title: 'Volume telur (kg)',
           subtitle: 'Pendapatan minggu ini',
-          total: '18.000',
-          maxVal: 4000,
-          yTicks: [4000, 2000, 0],
+          total: '—',
+          maxVal: 1,
+          yTicks: [1, 0],
           formatY: (val) => val === 0 ? '0' : val.toLocaleString('id-ID'),
-          bars: [
-            { label: 'Sen', value: 2400, displayVal: '2.400' },
-            { label: 'Sel', value: 3100, displayVal: '3.100' },
-            { label: 'Rab', value: 3500, displayVal: '3.500' },
-            { label: 'Kam', value: 2700, displayVal: '2.700' },
-            { label: 'Jum', value: 1900, displayVal: '1.900' },
-            { label: 'Sab', value: 3600, displayVal: '3.600' },
-            { label: 'Min', value: 1200, displayVal: '1.200' }
-          ]
+          bars: []
         },
         chartRight: {
           title: 'Pendapatan (Rp juta)',
           subtitle: 'Pendapatan minggu ini',
-          total: 'Rp 36 jt',
-          maxVal: 8,
-          yTicks: [8, 6, 4, 2, 0],
+          total: '—',
+          maxVal: 1,
+          yTicks: [1, 0],
           formatY: (val) => val === 0 ? '0' : val.toString(),
-          bars: [
-            { label: 'Sen', value: 4.8, displayVal: '4,8' },
-            { label: 'Sel', value: 6.0, displayVal: '6,0' },
-            { label: 'Rab', value: 6.8, displayVal: '6,8' },
-            { label: 'Kam', value: 5.4, displayVal: '5,4' },
-            { label: 'Jum', value: 3.8, displayVal: '3,8' },
-            { label: 'Sab', value: 7.2, displayVal: '7,2' },
-            { label: 'Min', value: 2.4, displayVal: '2,4' }
-          ]
+          bars: []
         }
       }
     };
@@ -6007,11 +5973,13 @@
               gradeKey: gradeKey,
               harga: 'Rp ' + Number(pr.harga_per_kg).toLocaleString('id-ID'),
               stok: Number(pr.stok_kg).toLocaleString('id-ID') + ' kg',
+              stokKg: Number(pr.stok_kg),
               minOrder: '10 kg',
               satuan: 'kg'
             };
           });
           renderProductsTable();
+          bangunDashboard();
         })
         .catch(function () { /* biarkan tabel kosong kalau katalog gagal dimuat */ });
     }
@@ -6097,8 +6065,11 @@
     /* --------------------------------------------------------------------------
        D. DASHBOARD METRIC SELECTION (S-1, S-2, S-3, S-4)
        -------------------------------------------------------------------------- */
+    let metricAktif = 'stok';
+
     function selectMetric(metricKey) {
       if (!DASHBOARD_CONFIGS[metricKey]) return;
+      metricAktif = metricKey;
 
       document.querySelectorAll('.metric-card').forEach(card => {
         if (card.dataset.metric === metricKey) {
@@ -6109,6 +6080,169 @@
       });
 
       renderPanel(DASHBOARD_CONFIGS[metricKey]);
+    }
+
+    /* --------------------------------------------------------------------------
+       D2. DASHBOARD DARI DATA ASLI (produk & pesanan dari API)
+       -------------------------------------------------------------------------- */
+    function tujuhHariTerakhir() {
+      const namaHari = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
+      const out = [];
+      const now = new Date();
+      for (let i = 6; i >= 0; i--) {
+        const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() - i);
+        const key = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+        out.push({ key: key, label: namaHari[d.getDay()] });
+      }
+      return out;
+    }
+
+    function batasAtasBagus(nilai) {
+      if (nilai <= 0) return 1;
+      const pangkat = Math.pow(10, Math.floor(Math.log10(nilai)));
+      const n = nilai / pangkat;
+      const bagus = n <= 1 ? 1 : (n <= 2 ? 2 : (n <= 5 ? 5 : 10));
+      return bagus * pangkat;
+    }
+
+    function setTeks(id, teks) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = teks;
+    }
+
+    function bangunDashboard() {
+      const hari7 = tujuhHariTerakhir();
+      const kunci7 = {};
+      hari7.forEach(function (h) { kunci7[h.key] = true; });
+
+      // --- Kartu metrik ---
+      let totalStok = 0;
+      PRODUCTS_DATA.forEach(function (pr) { totalStok += Number(pr.stokKg) || 0; });
+      setTeks('metricStok', totalStok.toLocaleString('id-ID'));
+
+      let baruMingguIni = 0;
+      let diproses = 0;
+      let pendapatan = 0;
+      const perHariPesanan = {};
+      const perHariKg = {};
+      const perHariRp = {};
+      hari7.forEach(function (h) { perHariPesanan[h.key] = 0; perHariKg[h.key] = 0; perHariRp[h.key] = 0; });
+      PESANAN_DATA.forEach(function (o) {
+        if (o.statusDb === 'diproses') diproses += 1;
+        const tgl = o.jadwal || '';
+        if (!kunci7[tgl]) return;
+        baruMingguIni += 1;
+        perHariPesanan[tgl] += 1;
+        (o.items || []).forEach(function (it) { perHariKg[tgl] += Number(it.qty) || 0; });
+        if (['dibayar', 'diproses', 'dikirim', 'diterima', 'selesai'].indexOf(o.statusDb) !== -1) {
+          pendapatan += Number(o.pembayaran) || 0;
+          perHariRp[tgl] += Number(o.pembayaran) || 0;
+        }
+      });
+      setTeks('metricPesananBaru', String(baruMingguIni));
+      setTeks('metricDiproses', String(diproses));
+      setTeks('metricPendapatan', 'Rp ' + pendapatan.toLocaleString('id-ID'));
+
+      // --- Panel stok: batang dari stok tiap produk ---
+      const stokBars = PRODUCTS_DATA.map(function (pr) {
+        const label = pr.jenis === 'Telur Ayam Ras' ? pr.grade : pr.jenis;
+        const nilai = Number(pr.stokKg) || 0;
+        return { label: label, value: nilai, displayVal: nilai.toLocaleString('id-ID') };
+      });
+      const maksStok = batasAtasBagus(Math.max.apply(null, stokBars.map(function (b) { return b.value; }).concat([0])));
+      DASHBOARD_CONFIGS['stok'] = {
+        type: 'single-chart',
+        title: 'Stok produk',
+        subtitle: 'Total stok tersedia',
+        total: totalStok.toLocaleString('id-ID') + ' kg',
+        maxVal: maksStok,
+        yTicks: [maksStok, Math.round(maksStok * 2 / 3), Math.round(maksStok / 3), 0],
+        formatY: (val) => val === 0 ? '0' : val.toLocaleString('id-ID'),
+        bars: stokBars
+      };
+
+      // --- Panel pesanan baru: jumlah per hari, 7 hari terakhir ---
+      const baruBars = hari7.map(function (h) {
+        const n = perHariPesanan[h.key] || 0;
+        return { label: h.label, value: n, displayVal: String(n) };
+      });
+      const maksBaru = batasAtasBagus(Math.max.apply(null, baruBars.map(function (b) { return b.value; }).concat([0])));
+      DASHBOARD_CONFIGS['pesanan-baru'] = {
+        type: 'single-chart',
+        title: 'Pesanan baru per hari',
+        subtitle: 'Jumlah pesanan',
+        total: baruMingguIni + ' pesanan',
+        maxVal: maksBaru,
+        yTicks: [maksBaru, Math.round(maksBaru * 2 / 3), Math.round(maksBaru / 3), 0],
+        formatY: (val) => val.toString(),
+        bars: baruBars
+      };
+
+      // --- Panel pesanan terbaru: 5 pesanan terakhir yang asli ---
+      const petaStatus = {
+        'menunggu-pembayaran': ['Menunggu Bayar', 'baru'],
+        'menunggu-persetujuan': ['Menunggu Persetujuan', 'baru'],
+        'diproses': ['Diproses', 'diproses'],
+        'dikirim': ['Dikirim', 'diproses'],
+        'diterima': ['Diterima', 'selesai'],
+        'selesai': ['Selesai', 'selesai'],
+        'dibatalkan': ['Dibatalkan', 'gagal']
+      };
+      const terbaru = PESANAN_DATA.slice(0, 5).map(function (o) {
+        const st = petaStatus[o.status] || [o.status, 'baru'];
+        const item = (o.items && o.items[0]) || {};
+        return {
+          id: '#ORD-2026-' + String(o.orderId || '').padStart(3, '0'),
+          buyer: o.pembeli || 'Pembeli',
+          product: item.produk || '-',
+          total: 'Rp ' + (Number(o.pembayaran) || 0).toLocaleString('id-ID'),
+          date: o.jadwalLabel || o.jadwal || '-',
+          status: st[0],
+          statusClass: st[1]
+        };
+      });
+      DASHBOARD_CONFIGS['pesanan-proses'] = {
+        type: 'table',
+        title: 'Pesanan Terbaru',
+        buttonText: 'Lihat Semua',
+        orders: terbaru
+      };
+
+      // --- Panel pendapatan: volume (kg) & rupiah per hari ---
+      const volBars = hari7.map(function (h) {
+        const n = perHariKg[h.key] || 0;
+        return { label: h.label, value: n, displayVal: n.toLocaleString('id-ID') };
+      });
+      const rpBars = hari7.map(function (h) {
+        const jt = (perHariRp[h.key] || 0) / 1000000;
+        return { label: h.label, value: Math.round(jt * 10) / 10, displayVal: jt.toLocaleString('id-ID', { maximumFractionDigits: 1 }) };
+      });
+      const maksVol = batasAtasBagus(Math.max.apply(null, volBars.map(function (b) { return b.value; }).concat([0])));
+      const maksRp = batasAtasBagus(Math.max.apply(null, rpBars.map(function (b) { return b.value; }).concat([0])));
+      const totalKg = volBars.reduce(function (s, b) { return s + b.value; }, 0);
+      DASHBOARD_CONFIGS['pendapatan'] = {
+        type: 'dual-charts',
+        chartLeft: {
+          title: 'Volume telur (kg)',
+          subtitle: 'Pendapatan minggu ini',
+          total: totalKg.toLocaleString('id-ID') + ' kg',
+          maxVal: maksVol,
+          yTicks: [maksVol, Math.round(maksVol * 2 / 3), Math.round(maksVol / 3), 0],
+          formatY: (val) => val === 0 ? '0' : val.toLocaleString('id-ID'),
+          bars: volBars
+        },
+        chartRight: {
+          title: 'Pendapatan (Rp juta)',
+          subtitle: 'Pendapatan minggu ini',
+          total: 'Rp ' + (pendapatan / 1000000).toLocaleString('id-ID', { maximumFractionDigits: 1 }) + ' jt',
+          maxVal: maksRp,
+          yTicks: [maksRp, Math.round(maksRp * 2 / 3 * 10) / 10, Math.round(maksRp / 3 * 10) / 10, 0],
+          formatY: (val) => val === 0 ? '0' : val.toString(),
+          bars: rpBars
+        }
+      };
+
+      renderPanel(DASHBOARD_CONFIGS[metricAktif]);
     }
 
     function renderPanel(config) {
@@ -6975,6 +7109,7 @@
             };
           });
           renderPesananTable();
+          bangunDashboard();
         })
         .catch(function () { /* biarkan tabel kosong kalau API gagal dimuat */ });
     }
